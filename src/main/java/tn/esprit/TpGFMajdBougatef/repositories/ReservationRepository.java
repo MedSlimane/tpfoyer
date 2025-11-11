@@ -7,6 +7,7 @@ import tn.esprit.TpGFMajdBougatef.entities.Reservation;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface ReservationRepository extends JpaRepository<Reservation, String> {
 
@@ -14,4 +15,8 @@ public interface ReservationRepository extends JpaRepository<Reservation, String
 	    "AND r.chambre.bloc.foyer.universite.nomUniversite = :nom")
     List<Reservation> findByAcademicYearAndUniversite(@Param("annee") Date anneeUniversitaire,
 						      @Param("nom") String nomUniversite);
+
+    // Active reservation for a student by CIN
+    @Query("SELECT r FROM Reservation r JOIN r.etudiants e WHERE e.cin = :cin AND r.estValide = true")
+    Optional<Reservation> findActiveByEtudiantCin(@Param("cin") long cin);
 }

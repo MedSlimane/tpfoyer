@@ -38,4 +38,18 @@ public class ReservationController {
             @RequestParam String nomUniversite){
         return reservationService.getReservationParAnneeUniversitaireEtNomUniversite(anneeUniversite, nomUniversite);
     }
+
+    // Ajouter réservation: affecte chambre + étudiant
+    @PostMapping("/ajouter")
+    @Operation(summary = "Ajouter une réservation", description = "Crée une réservation pour une chambre et un étudiant")
+    public Reservation ajouterReservation(@RequestParam long idChambre, @RequestParam long cinEtudiant){
+        return reservationService.ajouterReservation(idChambre, cinEtudiant);
+    }
+
+    // Annuler réservation par CIN étudiant
+    @PostMapping("/annuler")
+    @Operation(summary = "Annuler une réservation", description = "Annule la réservation active d'un étudiant (CIN)")
+    public Reservation annulerReservation(@RequestParam long cinEtudiant){
+        return reservationService.annulerReservation(cinEtudiant);
+    }
 }
