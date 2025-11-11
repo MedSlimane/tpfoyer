@@ -1,0 +1,100 @@
+{
+  "info": {
+    "name": "TpGFMajdBougatef API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8090" }
+  ],
+  "item": [
+    {
+      "name": "Bloc",
+      "item": [
+        {
+          "name": "Lister blocs",
+          "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/api/blocs", "host": ["{{baseUrl}}"], "path": ["api","blocs"]}},
+          "response": []
+        },
+        {
+          "name": "Créer bloc",
+          "request": {"method": "POST", "header": [{"key": "Content-Type","value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"nomBloc\": \"Bloc A\",\n  \"capaciteBloc\": 100\n}"}, "url": {"raw": "{{baseUrl}}/api/blocs", "host": ["{{baseUrl}}"], "path": ["api","blocs"]}},
+          "response": []
+        },
+        {
+          "name": "Modifier bloc",
+          "request": {"method": "PUT", "header": [{"key": "Content-Type","value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"idBloc\": 1,\n  \"nomBloc\": \"Bloc A Modifié\",\n  \"capaciteBloc\": 120\n}"}, "url": {"raw": "{{baseUrl}}/api/blocs", "host": ["{{baseUrl}}"], "path": ["api","blocs"]}},
+          "response": []
+        },
+        {
+          "name": "Consulter bloc",
+          "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/api/blocs/1", "host": ["{{baseUrl}}"], "path": ["api","blocs","1"]}},
+          "response": []
+        },
+        {
+          "name": "Supprimer bloc",
+          "request": {"method": "DELETE", "url": {"raw": "{{baseUrl}}/api/blocs/1", "host": ["{{baseUrl}}"], "path": ["api","blocs","1"]}},
+          "response": []
+        },
+        {
+          "name": "Affecter chambres à bloc",
+          "request": {"method": "PUT", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "[101,102,103]"}, "url": {"raw": "{{baseUrl}}/api/blocs/1/chambres", "host": ["{{baseUrl}}"], "path": ["api","blocs","1","chambres"]}},
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Chambre",
+      "item": [
+        {"name": "Lister chambres", "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/api/chambres", "host": ["{{baseUrl}}"], "path": ["api","chambres"]}}, "response": []},
+        {"name": "Créer chambre", "request": {"method": "POST", "header": [{"key": "Content-Type","value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"numeroChambre\": 101,\n  \"typeC\": \"SIMPLE\"\n}"}, "url": {"raw": "{{baseUrl}}/api/chambres", "host": ["{{baseUrl}}"], "path": ["api","chambres"]}}, "response": []},
+        {"name": "Modifier chambre", "request": {"method": "PUT", "header": [{"key": "Content-Type","value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"idChambre\": 1,\n  \"numeroChambre\": 101,\n  \"typeC\": \"DOUBLE\"\n}"}, "url": {"raw": "{{baseUrl}}/api/chambres", "host": ["{{baseUrl}}"], "path": ["api","chambres"]}}, "response": []},
+        {"name": "Consulter chambre", "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/api/chambres/1", "host": ["{{baseUrl}}"], "path": ["api","chambres","1"]}}, "response": []},
+        {"name": "Chambres non réservées", "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/api/chambres/non-reservees?nomUniversite=Uni1&type=SIMPLE", "host": ["{{baseUrl}}"], "path": ["api","chambres","non-reservees"], "query": [{"key": "nomUniversite","value": "Uni1"},{"key": "type","value": "SIMPLE"}]}}, "response": []},
+        {"name": "Chambres par université", "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/api/chambres/universite?nomUniversite=Uni1", "host": ["{{baseUrl}}"], "path": ["api","chambres","universite"], "query": [{"key": "nomUniversite","value": "Uni1"}]}}, "response": []},
+        {"name": "Chambres par bloc et type (keywords)", "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/api/chambres/bloc-type/keywords?idBloc=1&type=SIMPLE", "host": ["{{baseUrl}}"], "path": ["api","chambres","bloc-type","keywords"], "query": [{"key": "idBloc","value": "1"},{"key": "type","value": "SIMPLE"}]}}, "response": []},
+        {"name": "Chambres par bloc et type (JPQL)", "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/api/chambres/bloc-type/jpql?idBloc=1&type=SIMPLE", "host": ["{{baseUrl}}"], "path": ["api","chambres","bloc-type","jpql"], "query": [{"key": "idBloc","value": "1"},{"key": "type","value": "SIMPLE"}]}}, "response": []}
+      ]
+    },
+    {
+      "name": "Etudiant",
+      "item": [
+        {"name": "Lister étudiants", "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/api/etudiants", "host": ["{{baseUrl}}"], "path": ["api","etudiants"]}}, "response": []},
+        {"name": "Créer étudiants (batch)", "request": {"method": "POST", "header": [{"key": "Content-Type","value": "application/json"}], "body": {"mode": "raw", "raw": "[{\n  \"nomEt\": \"Doe\",\n  \"prenomEt\": \"John\",\n  \"cin\": 12345678,\n  \"ecole\": \"Ecole X\",\n  \"dateNaissance\": \"2000-01-01\"\n}]"}, "url": {"raw": "{{baseUrl}}/api/etudiants", "host": ["{{baseUrl}}"], "path": ["api","etudiants"]}}, "response": []},
+        {"name": "Modifier étudiant", "request": {"method": "PUT", "header": [{"key": "Content-Type","value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"idEtudiant\": 1,\n  \"nomEt\": \"Doe\",\n  \"prenomEt\": \"John\",\n  \"cin\": 87654321,\n  \"ecole\": \"Ecole Y\",\n  \"dateNaissance\": \"2000-01-01\"\n}"}, "url": {"raw": "{{baseUrl}}/api/etudiants", "host": ["{{baseUrl}}"], "path": ["api","etudiants"]}}, "response": []},
+        {"name": "Consulter étudiant", "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/api/etudiants/1", "host": ["{{baseUrl}}"], "path": ["api","etudiants","1"]}}, "response": []},
+        {"name": "Supprimer étudiant", "request": {"method": "DELETE", "url": {"raw": "{{baseUrl}}/api/etudiants/1", "host": ["{{baseUrl}}"], "path": ["api","etudiants","1"]}}, "response": []}
+      ]
+    },
+    {
+      "name": "Foyer",
+      "item": [
+        {"name": "Lister foyers", "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/api/foyers", "host": ["{{baseUrl}}"], "path": ["api","foyers"]}}, "response": []},
+        {"name": "Créer foyer", "request": {"method": "POST", "header": [{"key": "Content-Type","value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"nomFoyer\": \"Foyer Central\",\n  \"capaciteFoyer\": 300\n}"}, "url": {"raw": "{{baseUrl}}/api/foyers", "host": ["{{baseUrl}}"], "path": ["api","foyers"]}}, "response": []},
+        {"name": "Modifier foyer", "request": {"method": "PUT", "header": [{"key": "Content-Type","value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"idFoyer\": 1,\n  \"nomFoyer\": \"Foyer Central Modifié\",\n  \"capaciteFoyer\": 320\n}"}, "url": {"raw": "{{baseUrl}}/api/foyers", "host": ["{{baseUrl}}"], "path": ["api","foyers"]}}, "response": []},
+        {"name": "Consulter foyer", "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/api/foyers/1", "host": ["{{baseUrl}}"], "path": ["api","foyers","1"]}}, "response": []},
+        {"name": "Supprimer foyer", "request": {"method": "DELETE", "url": {"raw": "{{baseUrl}}/api/foyers/1", "host": ["{{baseUrl}}"], "path": ["api","foyers","1"]}}, "response": []}
+      ]
+    },
+    {
+      "name": "Reservation",
+      "item": [
+        {"name": "Lister réservations", "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/api/reservations", "host": ["{{baseUrl}}"], "path": ["api","reservations"]}}, "response": []},
+        {"name": "Modifier réservation", "request": {"method": "PUT", "header": [{"key": "Content-Type","value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"idReservation\": \"R1\",\n  \"anneeUniversitaire\": \"2025-09-01\",\n  \"estValide\": true,\n  \"chambre\": {\n    \"idChambre\": 1\n  },\n  \"etudiants\": [ { \"idEtudiant\": 1 } ]\n}"}, "url": {"raw": "{{baseUrl}}/api/reservations", "host": ["{{baseUrl}}"], "path": ["api","reservations"]}}, "response": []},
+        {"name": "Consulter réservation", "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/api/reservations/R1", "host": ["{{baseUrl}}"], "path": ["api","reservations","R1"]}}, "response": []},
+        {"name": "Réservations par année et université", "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/api/reservations/par-annee-et-universite?anneeUniversite=2025-09-01&nomUniversite=Uni1", "host": ["{{baseUrl}}"], "path": ["api","reservations","par-annee-et-universite"], "query": [{"key": "anneeUniversite","value": "2025-09-01"},{"key": "nomUniversite","value": "Uni1"}]}}, "response": []}
+      ]
+    },
+    {
+      "name": "Universite",
+      "item": [
+        {"name": "Lister universités", "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/api/universites", "host": ["{{baseUrl}}"], "path": ["api","universites"]}}, "response": []},
+        {"name": "Créer université", "request": {"method": "POST", "header": [{"key": "Content-Type","value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"nomUniversite\": \"Uni1\"\n}"}, "url": {"raw": "{{baseUrl}}/api/universites", "host": ["{{baseUrl}}"], "path": ["api","universites"]}}, "response": []},
+        {"name": "Modifier université", "request": {"method": "PUT", "header": [{"key": "Content-Type","value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"idUniversite\": 1,\n  \"nomUniversite\": \"Uni1 Mod\"\n}"}, "url": {"raw": "{{baseUrl}}/api/universites", "host": ["{{baseUrl}}"], "path": ["api","universites"]}}, "response": []},
+        {"name": "Consulter université", "request": {"method": "GET", "url": {"raw": "{{baseUrl}}/api/universites/1", "host": ["{{baseUrl}}"], "path": ["api","universites","1"]}}, "response": []},
+        {"name": "Affecter foyer à université (par nom)", "request": {"method": "PUT", "url": {"raw": "{{baseUrl}}/api/universites/affecter-foyer?idFoyer=1&nomUniversite=Uni1", "host": ["{{baseUrl}}"], "path": ["api","universites","affecter-foyer"], "query": [{"key": "idFoyer", "value": "1"}, {"key": "nomUniversite", "value": "Uni1"}]}}, "response": []},
+        {"name": "Désaffecter foyer d'une université", "request": {"method": "PUT", "url": {"raw": "{{baseUrl}}/api/universites/desaffecter-foyer/1", "host": ["{{baseUrl}}"], "path": ["api","universites","desaffecter-foyer","1"]}}, "response": []}
+      ]
+    }
+  ]
+}
