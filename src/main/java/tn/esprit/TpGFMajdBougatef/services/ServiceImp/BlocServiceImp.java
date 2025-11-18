@@ -43,6 +43,7 @@ public class BlocServiceImp implements BlocServiceInterfaces {
             c.setBloc(bloc);
         }
         chambreRepository.saveAll(chambres);
-        return blocRepository.findById(idBloc).orElse(bloc);
+        //return blocRepository.findById(idBloc).orElse(bloc);
+        return bloc;
     }
 }

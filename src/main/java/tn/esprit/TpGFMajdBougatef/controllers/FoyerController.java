@@ -29,6 +29,15 @@ public class FoyerController {
     @Operation(summary = "Modifier un foyer", description = "Met à jour un foyer existant")
     public Foyer updateFoyer(@RequestBody Foyer f){ return foyerService.updateFoyer(f); }
 
+    @PostMapping("/affecter-universite/{idUniversite}")
+    @Operation(summary = "Créer un foyer et l'affecter à une université",
+            description = "Ajoute un foyer avec ses blocs et l'affecte à une université")
+    public Foyer ajouterFoyerEtAffecterAUniversite(
+            @RequestBody Foyer foyer,
+            @PathVariable("idUniversite") long idUniversite) {
+        return foyerService.ajouterFoyerEtAffecterAUniversite(foyer, idUniversite);
+    }
+
     @GetMapping("/{id}")
     @Operation(summary = "Consulter un foyer", description = "Récupère un foyer par identifiant")
     public Foyer retrieveFoyer(@PathVariable("id") long idFoyer){ return foyerService.retrieveFoyer(idFoyer); }
